@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit image</title>
+</head>
+<body>
+    <div class="row justify-content-around">
+        <!-- {% if product %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"> {{ product.name }} </h5>
+ 
+              <h5 class="card-title"> {{ product.price }} </h5>
+              <h5 class="card-title"> {{ product.quantity }} </h5>
+              <a href="#" class="btn btn-primary"> Edit </a>
+            </div>
+          </div>
+          {% endif %} -->
+          <form class="col-12" action="{% url 'editproduct' product.id %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+          <div class='col-8 row'>
+            <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label"> Product Name </label>
+                    <input class="form-control col-12" type="text" name="name"  value="{{ product.name }}" >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label"> Product Price </label>
+                    <input class="form-control col-12" type="number" name="price" value="{{ product.price }}"  >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label"> Product Quantity </label>
+                    <input class="form-control col-12" type="number" name="quantity" value="{{ product.quantity }}"  >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label"> Product status </label>
+                    <select class="form-select" name="status">
+                        <option value="1" selected> In stock</option>
+                        <option value="0"> Out of stock</option>
+                    </select>
+            </div>
+            <div class="col-6">
+                <img src="{{product.image.url}}" alt="">
+            </div>
+          </div>
+          <button type="submit"  >submit</button>
+        </form>
+    </div>
+        
+</body>
+</html>
